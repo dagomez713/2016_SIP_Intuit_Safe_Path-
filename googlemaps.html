@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+      <meta charset="utf-8">
+      <style>
+       #map {
+        width: 100%;
+        height: 600px;
+      }
+      </style>
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8" /> 
+      <title>Google Maps Multiple Markers</title> 
+      <script src="http://maps.google.com/maps/api/js?sensor=false" 
+          type="text/javascript"></script>  
+    
+  </head>
+  <body>
+    <h3>My Google Maps Demo</h3>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        var locations = [[ "Auto Boost/Strip", 37.7770135, -122.4383734], ["Auto Boost/Strip", 37.7733825, -122.3964267], ["Assault/Battery", 37.7816814, -122.4155353], ["Strong Arm Rob", 37.8003538, -122.4041917], ["Auto Boost/Strip", 37.775809, -122.491822]];
+      
+        var myLatLng = {lat: -25.363, lng: 131.044};
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+          center: new google.maps.LatLng(37.7749, -122.4194),
+          mapTypeId: google.maps.MapTypeId.MAP
+        });
+        
+        var infowindow = new google.maps.InfoWindow();
+
+        var marker, i;
+        
+        var assault = 'file:///Users/delia/Desktop/ratchet-2.0.2%202/assault2.png';
+          
+        var burg = 'file:///Users/delia/Desktop/ratchet-2.0.2%202/burg.png';
+          
+        var theft = 'file:///Users/delia/Desktop/ratchet-2.0.2%202/theft.png';
+          
+        var drunk = 'file:///Users/delia/Desktop/ratchet-2.0.2%202/drunk2.png';
+        
+        var gun = 'file:///Users/delia/Desktop/ratchet-2.0.2%202/gun2.png';
+        
+       var cond = 
+            if (locations[i][0] == str("Auto Boost/Strip")) {
+                cond = theft;
+            }  
+                
+        for (i = 0; i < locations.length; i++) {  
+          marker = new google.maps.Marker({
+            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+            map: map,
+            icon: gun
+
+          });
+          google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+              infowindow.setContent(locations[i][0]);
+              infowindow.open(map, marker);
+            }
+          })(marker, i));              
+        }
+     
+      }
+    </script>
+    <script 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7d1aWB8cwFPESkkY3XMDFwG0by3kZSsY&callback=initMap" async defer>
+    </script>
+  </body>
+</html>
