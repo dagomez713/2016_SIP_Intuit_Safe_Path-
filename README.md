@@ -1,5 +1,0 @@
-LICENSE:
-
-MIT License
-
-**Hello**
